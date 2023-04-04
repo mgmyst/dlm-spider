@@ -233,4 +233,4 @@ def crawl(count=10, sleep=0, is_db_reset=False):
 
 
 if __name__ == '__main__':
-    crawl(50000, 0, True)
+    crawl(10, 0, True)

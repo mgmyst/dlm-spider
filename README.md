@@ -1,5 +1,5 @@
 # dlm-spider
-## Warning
+## ⚠️Warning
 Web scraping puts a load on the target website. When using this program, please comply with the site's terms of use and proceed at your own risk within the bounds of common sense.
 
 ## Overview

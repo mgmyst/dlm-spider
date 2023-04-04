@@ -3,10 +3,10 @@
 Web scraping puts a load on the target website. When using this program, please comply with the site's terms of use and proceed at your own risk within the bounds of common sense.
 
 ## Overview
-This is a program that scrapes information from the product details pages of [DLsite.com](https://www.dlsite.com/index.html) and saves it to an SQLite database.
+This is a program that scrapes data from the product details pages of [DLsite.com](https://www.dlsite.com/index.html) and saves it to an SQLite database.
 
 ## Usage
-Install all necessary packages.
+Install all necessary packages with `requirements.txt`.
 
 ```bash
 pip install -r requirements.txt

@@ -21,13 +21,16 @@ def crawl(count=10, sleep=0, is_db_reset=False):
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
+
     # ローカル向け
     # chrome_options.binary_location = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+    # driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
+
     # Colab向け
     sys.path.insert(0, '/usr/lib/chromium-browser/chromedriver')
     chrome_options.binary_location = '/usr/bin/chromium-browser'
-    # driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
-    # executable_pathは非推奨でGoogleColabでは動作しないため
+    chrome_options.add_argument('--remote-debugging-port=9222')
+    chrome_options.add_argument('--disable-software-rasterizer')
     driver = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()), options=chrome_options)
 
     # データベースの用意

@@ -1,11 +1,13 @@
 from lxml import etree
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from datetime import datetime
 import time
 import sqlite3
 import re
+import sys
 
 
 def crawl(count=10, sleep=0, is_db_reset=False):
@@ -19,8 +21,14 @@ def crawl(count=10, sleep=0, is_db_reset=False):
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
-    chrome_options.binary_location = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-    driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
+    # ローカル向け
+    # chrome_options.binary_location = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+    # Colab向け
+    sys.path.insert(0, '/usr/lib/chromium-browser/chromedriver')
+    chrome_options.binary_location = '/usr/bin/chromium-browser'
+    # driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
+    # executable_pathは非推奨でGoogleColabでは動作しないため
+    driver = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()), options=chrome_options)
 
     # データベースの用意
     connection = sqlite3.connect("db/sqlite.db")

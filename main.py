@@ -31,7 +31,8 @@ def crawl(count=10, sleep=0, is_db_reset=False):
     driver = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()), options=chrome_options)
 
     # データベースの用意
-    connection = sqlite3.connect("db/sqlite.db")
+    # connection = sqlite3.connect("db/sqlite.db")
+    connection = sqlite3.connect("/content/drive/MyDrive/Colab Notebooks/db/sqlite.db")
     cursor = connection.cursor()
     if is_db_reset:
         sql_file = 'db/_create_works_table.sql'

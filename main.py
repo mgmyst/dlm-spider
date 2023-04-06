@@ -16,21 +16,29 @@ def crawl(count=10, sleep=0, is_db_reset=False):
     error_count = 0
 
     # ヘッドレスブラウザの用意
-    chrome_options = Options()
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--disable-dev-shm-usage')
-
     # ローカル向け
+    # chrome_options = Options()
+    # chrome_options.add_argument('--headless')
+    # chrome_options.add_argument('--disable-gpu')
+    # chrome_options.add_argument('--no-sandbox')
+    # chrome_options.add_argument('--disable-dev-shm-usage')
     # chrome_options.binary_location = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
     # driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
 
     # Colab向け
     sys.path.insert(0, '/usr/lib/chromium-browser/chromedriver')
-    chrome_options.binary_location = '/usr/bin/chromium-browser'
-    chrome_options.add_argument('--remote-debugging-port=9222')
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--disable-software-rasterizer')
+    chrome_options.add_argument('--disable-extensions')
+    chrome_options.add_argument('--disable-infobars')
+    chrome_options.add_argument('--disable-popup-blocking')
+    chrome_options.add_argument('--remote-debugging-port=9222')
+    chrome_options.add_argument('--window-size=1920x1080')
+    chrome_options.binary_location = '/usr/bin/chromium-browser'
     driver = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()), options=chrome_options)
 
     # データベースの用意
